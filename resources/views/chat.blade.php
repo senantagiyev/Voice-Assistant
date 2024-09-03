@@ -158,9 +158,6 @@
     </style>
 </head>
 <body>
-
-<a style="color: #fff" href="{{ route('askView') }}">CHAT WiTH ME</a>
-
 <div class="container  e-card playing">
     <div class="image"></div>
 
@@ -171,15 +168,26 @@
 
         <br>
     </div>
-   <div class="main">
-       <h1 class="text-center text-light">Voice Assistant</h1>
-       <div class="text-center mb-4">
-           <button id="start" class="btn-start">
-               <i class="fa-solid fa-microphone"></i>
-           </button>
-       </div>
-       <div id="dialog"></div>
-   </div>
+
+
+
+@if(isset($question))
+    <p style="color: #fff">
+        Men : {{ $question }}
+    </p>
+
+    <p style="color: #fff">
+        Cavab : {{ $answer }}
+    </p>
+@endif
+
+<div class="main">
+    <form  action="{{ route('ask') }}" method="POST">
+        @csrf
+        <input autocomplete="off" class="form form-control" type="text" name="question" placeholder="Yazin...">
+        <br>
+        <button class="btn btn-primary">Sorus</button>
+    </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

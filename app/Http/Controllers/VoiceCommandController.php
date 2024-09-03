@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Gemini\Laravel\Facades\Gemini;
 
 class VoiceCommandController extends Controller
 {
@@ -35,5 +36,18 @@ class VoiceCommandController extends Controller
         return response()->json(['message' => $responseMessage]);
     }
 
+    public function askQuestions(Request $request)
+    {
+        $result = Gemini::geminiPro()->generateCOntent($request->question);
+        return view('chat',[
+            'question' => $request->question,
+            'answer' => $result->text()
+        ]);
+    }
+
+    public function chat()
+    {
+        return view('chat');
+    }
 
 }

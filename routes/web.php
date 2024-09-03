@@ -19,3 +19,6 @@ Route::get('/', function () {
 });
 
 Route::post('/voice-command', [VoiceCommandController::class, 'handleCommand']);
+Route::get('/chat', [VoiceCommandController::class, 'chat'])->name('askView');
+Route::post('/ask-qeuestion', [VoiceCommandController::class, 'askQuestions'])->name('ask');
+
